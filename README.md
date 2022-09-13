@@ -1,5 +1,10 @@
 # Grid-CRUD-Angular-Webinar
 
+**NOTE** 
+To learn how to create the web api and the SQL Server database, use this repository:
+
+https://github.com/jberes/Feature-API-Blazor-Webinar
+
 This project was generated with [App Builder Code Gen](https://www.infragistics.com/products/appbuilder).
 
 ## Development server
