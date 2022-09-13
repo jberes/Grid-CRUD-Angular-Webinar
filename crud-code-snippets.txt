@@ -1,0 +1,150 @@
+{
+	"Feature -- Feature Class": {
+		"scope": "typescript",
+		"prefix": "insert Feature Class Model",
+		"body": [
+			"export class Feature {",
+				"featureId = 0;",
+				"productId?: number;",
+				"title = '';",
+				"description = '';",
+				"requestorEmail='';",
+				"dateAdded = new Date();",
+			"}",
+		],
+		"description": "Insert Feature Class in features.model.ts"
+	},
+
+	"Service -- Service Class Add": {
+		"scope": "typescript",
+		"prefix": "API - addFeature API Call",
+		"body": [
+			"public async addFeature(feature: Feature): Promise<Feature> {",
+				"console.log(feature);",
+				"var headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });",
+				"var body = JSON.stringify(feature);",
+				"return await firstValueFrom(this.http.post<Feature>(`${API_ENDPOINT}/features/`, body, { headers }));",
+			"}",
+		],
+		"description": "addFeature API Call"
+	},
+
+	"Service -- Service Class Update": {
+		"scope": "typescript",
+		"prefix": "API - updateFeature API Call",
+		"body": [
+			"public async updateFeature(feature: Feature): Promise<Feature> {",
+				"console.log(feature);",
+				"//this.http.put<Feature>(`${API_ENDPOINT}/features/`, feature);",
+				"var headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });",
+				"var body = JSON.stringify(feature);",
+				"return await firstValueFrom(this.http.put<Feature>(`${API_ENDPOINT}/features/`, body, { headers }));",
+			"}",
+		],
+		"description": "updateFeature API Call"
+	},
+
+	"Service -- Service Class Delete": {
+		"scope": "typescript",
+		"prefix": "API - deleteFeature API Call",
+		"body": [
+			"public async deleteFeature(feature: Feature): Promise<Feature> {",
+				"console.log(feature);",
+				"return await firstValueFrom(this.http.delete<Feature>(`${API_ENDPOINT}/features/${feature.featureId}`));",
+			"}",
+		],
+		"description": "deleteFeature API Call"
+	},
+
+	"Service -- Service Class Get": {
+		"scope": "typescript",
+		"prefix": "API - getFeatures API Call",
+		"body": [
+			"public getFeatures(): Observable<Feature[]> {",
+				"return this.http.get<Feature[]>(`${API_ENDPOINT}/features`);",
+			"}",
+		],
+		"description": "getFeatures API Call"
+	},
+
+
+	"Snackbar -- HTML Snackbar": {
+		"scope": "html",
+		"prefix": "HTML - Add Snackbar in HTML",
+		"body": [
+			"<igx-snackbar #snackbar [outlet]='grid'></igx-snackbar>",
+		],
+		"description": "HTML - Add Snackbar in HTML"
+	},
+
+	"TypeScript -- Router Outlet Grid+Snackbar": {
+		"scope": "typescript",
+		"prefix": "TS - Add Grid+Snackbar ViewChild",
+		"body": [
+			"@ViewChild(IgxGridComponent) public grid!: IgxGridComponent",
+			"@ViewChild(IgxSnackbarComponent) public snackbar!: IgxSnackbarComponent",
+		],
+		"description": "TS - Add Grid+Snackbar ViewChild"
+	},
+
+
+	"TypeScript -- Router Outlet Snackbar": {
+		"scope": "typescript",
+		"prefix": "TS - Add SnackBar ViewChild",
+		"body": [
+			"@ViewChild(IgxSnackbarComponent) public snackbar!: IgxSnackbarComponent",
+		],
+		"description": "TS - Add SnackBar ViewChild"
+	},
+
+
+	"TypeScript -- Router Outlet Grid": {
+		"scope": "typescript",
+		"prefix": "TS - Add Grid ViewChild",
+		"body": [
+			"@ViewChild(IgxGridComponent) public grid!: IgxGridComponent",
+		],
+		"description": "TS - Add Grid ViewChild"
+	},
+
+	"TypeScript -- Code-Behind rowAdded": {
+		"scope": "typescript",
+		"prefix": "Code-Behind - rowAdded IRowDataEventArgs",
+		"body": [
+			"async rowAdded($event: IRowDataEventArgs) {",
+			"var newFeature = await this.featuresService.addFeature($event.data);",
+			"this.grid.updateRow(newFeature, $event.data.featureId);",
+			"}",
+		],
+		"description": "Code-Behind - rowAdded IRowDataEventArgs"
+	},
+
+	"TypeScript -- Code-Behind rowEditDone": {
+		"scope": "typescript",
+		"prefix": "Code-Behind - rowEditDone IGridEditDoneEventArgs",
+		"body": [
+			"async rowEditDone($event: IGridEditDoneEventArgs) {",
+			"if (!$event.isAddRow) {",
+			"await this.featuresService.updateFeature($event.newValue);",
+			" this.snackbar.open('Row Updated');",
+			"}",
+			"}",
+		],
+		"description": "Code-Behind - rowEditDone IGridEditDoneEventArgs"
+	},
+	
+	"TypeScript -- Code-Behind rowDeleted": {
+		"scope": "typescript",
+		"prefix": "Code-Behind - rowDeleted IRowDataEventArgs",
+		"body": [
+			"this.grid.isLoading=true;",
+			"await this.featuresService.deleteFeature($event.data);",
+			"this.grid.isLoading=false;",
+			" this.snackbar.open('Row Deleted');",
+			"}",
+		],
+		"description": "Code-Behind - rowDeleted IRowDataEventArgs"
+	},
+
+
+}
