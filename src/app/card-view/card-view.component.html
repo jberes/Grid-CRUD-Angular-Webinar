@@ -1,0 +1,36 @@
+<igx-card type="outlined" *ngFor="let item of revealDashboardsListDashboards" class="card">
+  <igx-card-header>
+    <div igxCardThumbnail>
+      <igx-avatar [src]="item.AddedByImageUrl" [roundShape]="true"></igx-avatar>
+    </div>
+    <h3 igxCardHeaderTitle>
+      {{ item.DateAdded }}
+    </h3>
+    <h5 igxCardHeaderSubtitle>
+      Subtitle goes here
+    </h5>
+  </igx-card-header>
+  <igx-card-media height="400px">
+    <img [src]="item.ThumbnailURL" class="image" />
+  </igx-card-media>
+  <igx-card-actions [reverse]="true" class="actions-content">
+    <button igxButton="flat" igxRipple class="button">
+      Button
+    </button>
+    <button igxButton="icon" igxRipple>
+      <igx-icon>
+        favorite
+      </igx-icon>
+    </button>
+    <button igxButton="icon" igxRipple>
+      <igx-icon>
+        bookmark
+      </igx-icon>
+    </button>
+    <button igxButton="icon" igxRipple>
+      <igx-icon>
+        share
+      </igx-icon>
+    </button>
+  </igx-card-actions>
+</igx-card>
