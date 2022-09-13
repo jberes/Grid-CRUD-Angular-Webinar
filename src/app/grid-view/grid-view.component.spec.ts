@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-import { IgxGridModule } from 'igniteui-angular';
+import { IgxGridModule, IgxActionStripModule } from 'igniteui-angular';
 import { GridViewComponent } from './grid-view.component';
 
 describe('GridViewComponent', () => {
@@ -13,7 +13,7 @@ describe('GridViewComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ GridViewComponent ],
-      imports: [ NoopAnimationsModule, FormsModule, HttpClientTestingModule, IgxGridModule ]
+      imports: [ NoopAnimationsModule, FormsModule, HttpClientTestingModule, IgxGridModule, IgxActionStripModule ]
     })
     .compileComponents();
   });
