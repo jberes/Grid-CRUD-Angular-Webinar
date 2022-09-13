@@ -1,18 +1,32 @@
-<igx-grid [data]="featuresFeatures" primaryKey="featureId" displayDensity="cosy" rowSelection="multiple" cellSelection="multiple" [rowEditable]="true" [moving]="true" columnSelection="multiple" [allowFiltering]="true" filterMode="excelStyleFilter" class="grid">
+<igx-grid [data]="featuresFeatures" primaryKey="featureId" displayDensity="cosy" rowSelection="multiple" cellSelection="multiple"
+ [rowEditable]="true" [moving]="true" columnSelection="multiple" [allowFiltering]="true" filterMode="excelStyleFilter" class="grid"
+ #grid
+ (rowDeleted)="rowDeleted($event)"
+ (rowAdded)="rowAdded($event)"
+ (rowEditDone)="rowEditDone($event)"
+
+
+ >
   <igx-grid-toolbar>
     <igx-grid-toolbar-actions>
       <igx-grid-toolbar-hiding></igx-grid-toolbar-hiding>
     </igx-grid-toolbar-actions>
     <igx-grid-toolbar-title>Customer Features List</igx-grid-toolbar-title>
   </igx-grid-toolbar>
-  <igx-column header="featureId" field="featureId" dataType="number" [sortable]="true" [resizable]="true" [groupable]="true" [editable]="true" title="featureId"></igx-column>
-  <igx-column header="productId" field="productId" dataType="number" [sortable]="true" [resizable]="true" [groupable]="true" [editable]="true" title="productId"></igx-column>
-  <igx-column header="title" field="title" dataType="string" [sortable]="true" [resizable]="true" [groupable]="true" [editable]="true" title="title"></igx-column>
+  <igx-column width="75px" header="featureId" field="featureId" dataType="number" [sortable]="true" [resizable]="true" [groupable]="true" [editable]="false" title="featureId"></igx-column>
+  <igx-column width="75px" header="productId" field="productId" dataType="number" [sortable]="true" [resizable]="true" [groupable]="true" [editable]="true" title="productId"></igx-column>
+  <igx-column width="175px" header="title" field="title" dataType="string" [sortable]="true" [resizable]="true" [groupable]="true" [editable]="true" title="title"></igx-column>
   <igx-column header="description" field="description" dataType="string" [sortable]="true" [resizable]="true" [groupable]="true" [editable]="true" title="description"></igx-column>
   <igx-column header="requestorEmail" field="requestorEmail" dataType="string" [sortable]="true" [resizable]="true" [groupable]="true" [editable]="true" title="requestorEmail"></igx-column>
-  <igx-column header="dateAdded" field="dateAdded" dataType="string" [sortable]="true" [resizable]="true" [groupable]="true" [editable]="true" title="dateAdded"></igx-column>
+  <igx-column header="dateAdded" field="dateAdded" dataType="string" [sortable]="true" [resizable]="true" [groupable]="true" [editable]="false" title="dateAdded"></igx-column>
   <igx-action-strip>
     <igx-grid-pinning-actions></igx-grid-pinning-actions>
     <igx-grid-editing-actions [addRow]="true"></igx-grid-editing-actions>
   </igx-action-strip>
+
+<igx-snackbar #snackbar [outlet]="grid">
+
+
+</igx-snackbar>
+
 </igx-grid>
